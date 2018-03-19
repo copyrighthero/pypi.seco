@@ -8,7 +8,7 @@ __all__ = (
 # package metadata
 __author__ = 'Hansheng Zhao'
 __license__ = 'BSD-2-Clause + MIT'
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 
 class SeCo(object):
