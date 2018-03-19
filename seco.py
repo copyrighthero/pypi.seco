@@ -1,26 +1,14 @@
 # Author: Hansheng Zhao <copyrighthero@gmail.com> (https://www.zhs.me)
 
-import bz2
-import zlib
-import json
-import pickle
 
-try:
-  # attempts to import msgpack
-  import msgpack
-except ModuleNotFoundError:
-  # use pickle if not available
-  msgpack = pickle
-
-
-# import all directive
+# import directive
 __all__ = (
   '__author__', '__license__', '__version__', 'SeCo'
 )
 # package metadata
 __author__ = 'Hansheng Zhao'
 __license__ = 'BSD-2-Clause + MIT'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
 
 class SeCo(object):
@@ -79,15 +67,25 @@ class SeCo(object):
     """
     # setup appropriate serializer
     if self._serializer is None:
+      # import json serializer
+      import json
       self._serializer = json
       if self._serialize == 'pickle':
+        # import pickle serializer
+        import pickle
         self._serializer = pickle
       elif self._serialize == 'msgpack':
+        # import msgpack serializer
+        import msgpack
         self._serializer = msgpack
     # setup appropriate compressor
     if self._compressor is None:
+      # import zlib serializer
+      import zlib
       self._compressor = zlib
       if self._compress == 'bz2':
+        # import bz2 compressor
+        import bz2
         self._compressor = bz2
 
   @property
