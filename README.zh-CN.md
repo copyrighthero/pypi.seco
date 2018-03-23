@@ -8,6 +8,8 @@
 
 用户/程序员可以方便地将Python程序中的数据序列化并压缩，并且可以将结果以`blob`的类型存入数据库中，存入`redis`或`memcached`服务器上，或者进行跨程序信息交换。
 
+如果您要安装，请执行`pip install SeCo`指令；然后将`from seco import SeCo` import命令和`seco = SeCo()`实例化命令添加到您的程序中来使用`SeCo`库。
+
 ## 选择序列器和压缩器 ##
 
 > 目前最好的组合是`msgpack`和`zlib`，此组合运行速度快并且最终结果很省空间。但是目前作为默认的组合是`json`和`zlib`因为在大多数情况下够用了。
@@ -20,7 +22,7 @@
 
 ## SeCo类API文档 ##
 
-`SeCo`是本模块提供的唯一类，可被用作`序列化并压缩/去序列化并解压缩`操作。为了提供对Python习俗的兼容，本类提供了如： `loads`, `dumps`, `load`, `dump`等方法，并且实现了`__call__`魔术方法来让用户快速操作数据.
+通过`pip install SeCo`安装之后，用户可以方便地执行`from seco import SeCo`。`SeCo`是本模块提供的唯一类，可被用作`序列化并压缩/去序列化并解压缩`操作。为了提供对Python习俗的兼容，本类提供了如： `loads`, `dumps`, `load`, `dump`等方法，并且实现了`__call__`魔术方法来让用户快速操作数据.
 
 头: `SeCo(serialize = None, compress = None)`
 

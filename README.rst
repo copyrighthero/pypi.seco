@@ -11,6 +11,8 @@ This is a library to serialize+compress and deserialize+decompress data. It is v
 
 By using this library, the user/developer can easily serialize+compress data in Python, like `dict`, `list` etc, save the end result as `blob` to databases, save them to `redis` or `memcached` servers, or exchange them between python processes. It can save quite some space.
 
+To install, please run `pip install SeCo`; and the `Seco` class can be used by adding the `from seco import SeCo` import line and the `seco = SeCo()` instantiate line to your program.
+
 Choose Serializer and Compressor
 ================================
 
@@ -25,7 +27,7 @@ Another example, `zlib` is faster, or much faster, than `bz2`, but the compresse
 SeCo Class API References
 =========================
 
-`SeCo` is the only class provided in this module, its instance is responsible for serializing + compressing and de-serializing + decompressing functionality. It provides `loads`, `dumps`, `load`, `dump` methods to conform Python conventions, and it also provides `__call__` magic method for quick operations.
+After installing using `pip install SeCo`, one can simply `from seco import SeCo`. `SeCo` is the only class provided in this module, its instance is responsible for serializing + compressing and de-serializing + decompressing functionality. It provides `loads`, `dumps`, `load`, `dump` methods to conform Python conventions, and it also provides `__call__` magic method for quick operations.
 
 Signature: `SeCo(serialize = None, compress = None)`
 
