@@ -8,7 +8,7 @@ __all__ = (
 # package metadata
 __author__ = 'Hansheng Zhao'
 __license__ = 'BSD-2-Clause + MIT'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 class SeCo(object):
@@ -68,8 +68,8 @@ class SeCo(object):
     # setup appropriate serializer
     if self._serializer is None:
       # import json serializer
-      import json
-      self._serializer = json
+      import simplejson
+      self._serializer = simplejson
       if self._serialize == 'pickle':
         # import pickle serializer
         import pickle
