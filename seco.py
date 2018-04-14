@@ -8,7 +8,7 @@ __all__ = (
 # package metadata
 __author__ = 'Hansheng Zhao'
 __license__ = 'BSD-2-Clause + MIT'
-__version__ = '1.0.1'
+__version__ = '1.1.0'
 
 
 class SeCo(object):
@@ -83,10 +83,18 @@ class SeCo(object):
       # import zlib serializer
       import zlib
       self._compressor = zlib
-      if self._compress == 'bz2':
+      if self._compress == 'gzip':
+        # import gzip compressor
+        import gzip
+        self._compressor = gzip
+      elif self._compress == 'bz2':
         # import bz2 compressor
         import bz2
         self._compressor = bz2
+      elif self._compress == 'lzma':
+        # import lzma compressor
+        import lzma
+        self._compressor = lzma
 
   @property
   def serializer(self):

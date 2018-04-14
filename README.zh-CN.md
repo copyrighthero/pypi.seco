@@ -13,12 +13,14 @@
 ## 选择序列器和压缩器 ##
 
 > 目前最好的组合是`msgpack`和`zlib`，此组合运行速度快并且最终结果很省空间。但是目前作为默认的组合是`json`和`zlib`因为在大多数情况下够用了。
+
+> 本包默认的`json`序列器实际上使用了`simplejson`因为在Python 3.5环境下核心`json`包不支持`bytes`作为信息源来处理。
  
 但是，众所周知的是，没有一个序列器或压缩器是完美的，请根据实际情况选择。
 
 `json`并不能处理`bytes`或者`bytearray`类型的数据；`json`和`msgpack`两者都不能处理如`set`,`frozenset`类的数据。对Python数据类型兼容性最广的是`pickle`模块，但是要注意的是`pickle`序列化的结果通常很大，而且不兼容其他语言。
 
-`zlib`比`bz2`要快（很多），但通常情况下压缩效率并不如`bz2`。Python 3环境下还有`lzma`模块可以用作压缩，但是该模块并不存在于Python 2环境，并且压缩效率和速度不是很理想，所以并没有包含作为本库的选项。当然用户可以很方便地根据实际情况改变序列器和压缩器。
+`zlib`比`bz2`要快（很多），但通常情况下压缩效率并不如`bz2`；`gzip`模组的压缩效率和速度都介于`zlib`和`bz2`之间。Python 3环境下还有`lzma`模块可以用作压缩，但是该模块并不存在于Python 2环境，并且压缩速度很不理想，但是`lzma`压缩效率却非常惊人。当然用户可以很方便地根据实际情况改变序列器和压缩器。
 
 ## SeCo类API文档 ##
 
@@ -30,7 +32,7 @@
 
 1. `serialize = None`: 第一个参数，可选`(None, 'json', 'msgpack', 'pickle')`中任意一个。
 
-2. `compress = None`: 第二个参数，可选`(None, 'zlib', 'bz2')`中任意一个。
+2. `compress = None`: 第二个参数，可选`(None, 'zlib', 'gzip', 'bz2', 'lzma')`中任意一个。
 
 ```python
 from seco import SeCo

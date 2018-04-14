@@ -18,11 +18,13 @@ Choose Serializer and Compressor
 
  The best combination is `msgpack` and `zlib` for it is fast and space conservative. The default is `json` and `zlib` because in most cases it is sufficient.
 
+ The default `json` serializer relies on `simplejson` instead of core `json` because under Python 3.5 the core JSON package cannot use `bytes` as input for loading.
+
 However, each combination has its strengths and weaknesses, choose according to your needs.
 
 For example, `json` cannot serialize `bytes` or `bytearray` objects; both `json` and `msgpack` cannot serialize `set`, `frozenset` instances. For the broadest possible serialization support, the user can use `pickle` as the serializer as it can serialize almost all Python objects. But remember that `pickle` is not compatible with other languages, and its result bloats quite a bit, so if you are limited by space, use the other two serializers.
 
-Another example, `zlib` is faster, or much faster, than `bz2`, but the compressed result is not as space efficient as that of `bz2`'s. There is also `lzma` compression library available to Python 3 environment, but it is somewhat not as efficient or fast and it is not available under Python 2, so it is not included. You can absolutely change the compressor to `lzma` if you want.
+Another example, `zlib` is faster, or much faster, than `bz2`, but the compressed result is not as space efficient as that of `bz2`'s, and the `gzip` is in-between of `zlib` and `bz2` in terms of speed and compression ratio. There is also `lzma` compression library available to Python 3 environment, it is quite slow and it is not available under Python 2, but it has a a quite impressive compression ratio. You can absolutely change the compressor to `lzma` if you want.
 
 SeCo Class API References
 =========================
@@ -35,7 +37,7 @@ To construct an instance, simply provide the constructor with two optional, desi
 
 1. `serialize = None`: the first parameter, can be anything in `(None, 'json', 'msgpack', 'pickle')`.
 
-2. `compress = None`: the second parameter, can be anything in `(None, 'zlib', 'bz2')`.
+2. `compress = None`: the second parameter, can be anything in `(None, 'zlib', 'gzip', 'bz2', 'lzma')`.
 
 .. code-block:: python
 
